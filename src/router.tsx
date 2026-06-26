@@ -1,5 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import PublicLayout from "./page/PublicLayout";
+import AdminLayout from "./page/AdminLayout";
 import Home from "./page/publicpage/Home";
 import Tracking from "./page/publicpage/Tracking";
 import Pickup from "./page/publicpage/Pickup";
@@ -18,6 +19,12 @@ export const router = createBrowserRouter([
       { path: "support", element: <Support /> },
     ],
   },
-  // 추후 AdminLayout 및 ProtectedRoute를 사용하는 /admin 라우트도 여기에 추가합니다.
+  {
+    path: "/admin",
+    element: <AdminLayout />,
+    children: [
+      // 어드민 하위 페이지들이 여기에 추가됩니다.
+    ],
+  },
 ]);
 
