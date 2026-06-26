@@ -1,0 +1,15 @@
+/* ---- 공통 믹스인 (Mixins) ---- */
+
+// Flex 중앙 정렬
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+// 모바일 미디어 쿼리 (현재 900px 기준)
+@mixin mobile {
+  @media (max-width: 900px) {
+    @content;
+  }
+}

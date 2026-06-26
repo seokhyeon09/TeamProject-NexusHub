@@ -1,0 +1,79 @@
+@use './mixins' as *;
+
+/* ============================================================ SECTION 공통 */
+section {
+  padding: 92px 0;
+}
+
+.container {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+
+  @include mobile {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+}
+
+.img-placeholder {
+  background: #e9edf2;
+  background-image: linear-gradient(135deg, #eef1f5 25%, #e4e8ee 25%, #e4e8ee 50%, #eef1f5 50%, #eef1f5 75%, #e4e8ee 75%);
+  background-size: 24px 24px;
+  @include flex-center;
+  color: #aab2bd;
+  font-size: 13px;
+  letter-spacing: .02em;
+  overflow: hidden;
+}
+
+/* ---- 배지 ---- */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 6px 15px;
+  border-radius: 999px;
+
+  .dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: currentColor;
+  }
+}
+
+.badge-blue { background: var(--blue); color: #fff; }
+.badge-blue-soft { background: var(--blue-soft); color: var(--blue-dark); }
+.badge-orange { background: #fef3c7; color: var(--orange-dark); }
+.badge-green { background: var(--green-soft); color: var(--green); }
+
+/* ---- 버튼 ---- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  padding: 13px 26px;
+  border-radius: 80px;
+  cursor: pointer;
+  border: none;
+  transition: .2s;
+}
+
+.btn-orange { background: var(--orange); color: #fff; }
+.btn-orange:hover { background: var(--orange-dark); }
+.btn-ghost { background: #fff; color: var(--text); border: 1px solid var(--border); }
+.btn-ghost:hover { background: var(--light-2); }
+.btn-outline-white { background: rgba(255,255,255,.08); color: #fff; border: 1px solid rgba(255,255,255,.45); }
+.btn-outline-white:hover { background: rgba(255,255,255,.2); }
