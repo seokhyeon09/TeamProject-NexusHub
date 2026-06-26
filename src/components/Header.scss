@@ -12,7 +12,7 @@ header.scrolled{background:rgba(15,23,42,.15);backdrop-filter:blur(16px);border-
 .nav-menu a:hover{opacity:1;}
 .nav-right{display:flex;align-items:center;gap:18px;}
 .nav-right .login{color:#fff;font-size:14px;display:flex;align-items:center;gap:6px;opacity:.92;}
-.nav-right .staff{background:var(--blue);color:#fff;font-size:14px;font-weight:600;padding:9px 16px;border-radius:8px;display:flex;align-items:center;gap:6px;}
+.nav-right .staff{background:var(--blue);color:#fff;font-size:14px;font-weight:600;padding:9px 16px;border-radius:80px;display:flex;align-items:center;gap:6px;}
 
 
 @media (max-width: 900px) {

@@ -43,7 +43,7 @@ button{font-family:inherit;}
 .badge-green{background:var(--green-soft);color:var(--green);}
 
 /* ---- 버튼 ---- */
-.btn{display:inline-flex;align-items:center;gap:8px;font-size:15px;font-weight:600;padding:13px 26px;border-radius:10px;cursor:pointer;border:none;transition:.2s;}
+.btn{display:inline-flex;align-items:center;gap:8px;font-size:15px;font-weight:600;padding:13px 26px;border-radius:80px;cursor:pointer;border:none;transition:.2s;}
 .btn-orange{background:var(--orange);color:#fff;}
 .btn-orange:hover{background:var(--orange-dark);}
 .btn-ghost{background:#fff;color:var(--text);border:1px solid var(--border);}

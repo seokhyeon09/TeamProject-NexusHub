@@ -1,6 +1,7 @@
 import './Services.scss';
 import { IconGrid, IconSearch } from './icons'
 import { serviceCards } from '../data/content'
+import { Link } from 'react-router-dom'
 
 export default function Services() {
   return (
@@ -27,7 +28,7 @@ export default function Services() {
             </div>
             <div className="service-cards">
               {serviceCards.map((card, i) => (
-                <div className="svc-card" key={i}>
+                <Link to={card.path} className="svc-card" key={i}>
                   <div className="ci">
                     <IconSearch />
                   </div>
@@ -40,7 +41,7 @@ export default function Services() {
                       </span>
                     ))}
                   </div>
-                </div>
+                </Link>
               ))}
             </div>
           </div>

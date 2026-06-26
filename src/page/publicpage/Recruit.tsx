@@ -1,7 +1,7 @@
-export default function Tracking() {
+export default function Recruit() {
   return (
     <div style={{ paddingTop: '160px', minHeight: '60vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-      <h1>실시간 배송 조회</h1>
+      <h1>택배 기사(SM) 채용</h1>
     </div>
   )
 }
