@@ -6,9 +6,8 @@ interface FootCol {
   links: string[]
 }
 const footCols: FootCol[] = [
-  { title: '허브소개', links: ['센터장 인사말', '만조의 길 시스템', '오시는 길'] },
+  { title: '허브소개', links: ['센터장 인사말', '만조의 길 시스템', '오시는 길', '회사연혁'] },
   { title: '배송조회', links: ['일반운송장조회', '우리동네택배함', '지역집화수거방법'] },
-  { title: '회사연혁', links: [] },
   { title: '물류상담', links: ['상담신청', '상담요청'] },
 ]
 

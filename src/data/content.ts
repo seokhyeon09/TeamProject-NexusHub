@@ -13,25 +13,25 @@ export const serviceCards: ServiceCard[] = [
     title: '실시간 배송 조회',
     desc: '운송장 번호 하나로 현재 내 택배가 어디에 있는지, 몇 시에 도착하는지 실시간으로 확인할 수 있습니다.',
     chips: ['실시간 위치 추적', '예상 도착 시간', '배송 기사 정보'],
-    path: '/tracking'
+    path: '/tracking/waybill'
   },
   {
     title: '정기 집화 신청',
     desc: '과수원, 공장, 의류 매장 등 매일 수거가 필요한 사업자를 위한 전용 정기 픽업 신청 서비스입니다.',
     chips: ['기업/개인 모두 가능', '예상 도착 시간', '배송 기사 정보'],
-    path: '/pickup'
+    path: '/tracking/pickup'
   },
   {
     title: '택배 기사(SM) 채용',
     desc: '진접·오남·별내·퇴계원 구역을 담당할 파트너 기사님과 상하차 인력을 상시 모집하고 있습니다.',
     chips: ['구역 SM 모집', '상하차 아르바이트', '즉시 지원 가능'],
-    path: '/recruit'
+    path: '/consulting/info'
   },
   {
     title: '파손·분실 고객센터',
     desc: '운송장 번호 하나로 현재 내 택배가 어디에 있는지, 몇 시에 도착하는지 실시간으로 확인할 수 있습니다.',
     chips: ['파손 보상 접수', '분실 신고', '1:1 전담 상담'],
-    path: '/support'
+    path: '/support/notice'
   }
 ]
 
