@@ -1,17 +1,43 @@
+import { Link } from 'react-router-dom';
 import './Footer.scss';
 import { IconPin, IconFax, IconPhone, IconMail } from './icons'
 
 interface FootCol {
   title: string
-  links: string[]
+  links: { label: string, path: string }[]
 }
 const footCols: FootCol[] = [
-  { title: '허브소개', links: ['센터장 인사말', '만조의 길 시스템', '오시는 길', '회사연혁'] },
-  { title: '배송조회', links: ['일반운송장조회', '우리동네택배함', '지역집화수거방법'] },
-  { title: '물류상담', links: ['상담신청', '상담요청'] },
+  { 
+    title: '허브소개', 
+    links: [
+      { label: '센터장 인사말', path: '/about/message' }, 
+      { label: '인프라 및 시스템', path: '/about/infrastructure' }, 
+      { label: '오시는 길', path: '/about/location' }, 
+      { label: '회사연혁', path: '/about/history' }
+    ] 
+  },
+  { 
+    title: '배송조회', 
+    links: [
+      { label: '일반운송장조회', path: '/tracking/waybill' }, 
+      { label: '우리동네택배함', path: '/tracking/neighborhood' }, 
+      { label: '지역집화수거방법', path: '/tracking/pickup' }
+    ] 
+  },
+  { 
+    title: '물류상담', 
+    links: [
+      { label: '상담안내', path: '/consulting/info' }, 
+      { label: '상담신청', path: '/consulting/apply' }
+    ] 
+  },
 ]
 
-const csLinks = ['공지사항', '자주묻는질문', '파손/분실접수']
+const csLinks = [
+  { label: '공지사항', path: '/support/notice' }, 
+  { label: '자주묻는질문', path: '/support/faq' }, 
+  { label: '파손/분실접수', path: '/support/claim' }
+]
 
 export default function Footer() {
   return (
@@ -19,11 +45,11 @@ export default function Footer() {
       <div className="container">
         <div className="foot-grid">
           <div className="foot-brand">
-            <a href="#" className="logo">
-              <span className="mark">N</span>
+            <a href="#" className="logo" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <img src="/Logo.svg" alt="N" style={{ width: '28px', height: 'auto', filter: 'grayscale(100%) brightness(1.2) opacity(0.7)' }} />
               <span>
                 <span className="name">NexusHub</span>
-                <span className="sub">남양주주터미널</span>
+                <span className="sub">남양주터미널</span>
               </span>
             </a>
             <p>
@@ -52,9 +78,9 @@ export default function Footer() {
             <div className="foot-col" key={col.title}>
               <h5>{col.title}</h5>
               {col.links.map((link) => (
-                <a href="#" key={link}>
-                  {link}
-                </a>
+                <Link to={link.path} key={link.label}>
+                  {link.label}
+                </Link>
               ))}
             </div>
           ))}
@@ -62,10 +88,13 @@ export default function Footer() {
           <div className="foot-cs">
             <h5>고객센터</h5>
             {csLinks.map((link) => (
-              <a href="#" className="cs-link" key={link}>
-                {link}
-              </a>
+              <Link to={link.path} className="cs-link" key={link.label}>
+                {link.label}
+              </Link>
             ))}
+          </div>
+
+          <div className="foot-cs">
             <h5>고객센터</h5>
             <div className="tel">
               <IconPhone />1588-XXXX
@@ -73,7 +102,7 @@ export default function Footer() {
             <div className="hrs">
               평일 09:00 ~ 18:00
               <br />
-              점심 12:00 ~ 13:00 휴게
+              점심 12:00 ~ 13:00 제외
             </div>
           </div>
         </div>

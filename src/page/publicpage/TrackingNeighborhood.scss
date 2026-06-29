@@ -1,0 +1,395 @@
+.tracking-neighborhood {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 1151px;
+  max-width: 100%;
+
+  .tracking-box {
+    background: #ffffff;
+    border-radius: 16px;
+    border: 1px solid #e5e7eb;
+    padding: 20px 30px;
+  }
+  .summary-stats {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .stat-item {
+      flex: 1;
+      text-align: center;
+      position: relative;
+
+      &:not(:last-child)::after {
+        content: '';
+        position: absolute;
+        right: 0;
+        top: 10%;
+        bottom: 10%;
+        width: 1px;
+        background: #f0f0f0;
+      }
+
+      .stat-label {
+        font-size: 14px;
+        color: #666;
+        margin-bottom: 8px;
+      }
+
+      .stat-value {
+        font-size: 28px;
+        font-weight: 700;
+
+        &.black { color: #333; }
+        &.green { color: #17b354; }
+        &.red { color: #f75555; }
+        &.blue { color: #4a7cf6; }
+
+        .unit {
+          font-size: 16px;
+          font-weight: 600;
+          color: #666;
+          margin-left: 4px;
+        }
+      }
+    }
+  }
+  .detail-section {
+    display: flex;
+    flex-direction: column;
+
+    .section-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: #333;
+      margin-bottom: 24px;
+    }
+    .detail-content {
+      display: flex;
+      gap: 40px;
+      align-items: flex-start;
+      .region-list-pane {
+        flex: 0 0 260px;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+
+        .search-box {
+          position: relative;
+          
+          input {
+            width: 100%;
+            padding: 14px 16px 14px 40px;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+            background: #f8fafc;
+            font-size: 14px;
+            outline: none;
+            
+            &::placeholder { color: #999; }
+            
+            &:focus {
+              border-color: #4a7cf6;
+              background: #fff;
+            }
+          }
+
+          .search-icon {
+            position: absolute;
+            left: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #888;
+          }
+        }
+
+        .region-cards {
+          display: flex;
+          flex-direction: column;
+          gap: 12px;
+          max-height: 500px;
+          overflow-y: auto;
+          padding-right: 8px;
+
+          &::-webkit-scrollbar {
+            width: 6px;
+          }
+          &::-webkit-scrollbar-thumb {
+            background: #ddd;
+            border-radius: 4px;
+          }
+
+          .region-card {
+            padding: 15px 15px;
+            border-radius: 12px;
+            border: 1px solid #e5e7eb;
+            background: #fff;
+            cursor: pointer;
+            transition: all 0.2s;
+
+            &:hover {
+              box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            }
+
+            &.active-delay {
+              border: 1px solid #ffcccc;
+              background: #fffafa;
+            }
+
+            &.selected {
+              border-color: #4a7cf6;
+              box-shadow: 0 0 0 1px #4a7cf6, 0 4px 12px rgba(74, 124, 246, 0.15);
+            }
+
+            .region-name {
+              font-size: 16px;
+              font-weight: 700;
+              color: #333;
+              margin-bottom: 5px;
+            }
+
+            .region-status {
+              display: flex;
+              align-items: center;
+              gap: 8px;
+              font-size: 13px;
+
+              .dot {
+                width: 6px;
+                height: 6px;
+                border-radius: 50%;
+                &.green { background: #1cc661; }
+                &.red { background: #f75555; }
+              }
+
+              .status-text {
+                font-weight: 600;
+                &.green { color: #1cc661; }
+                &.red { color: #f75555; }
+              }
+
+              .status-desc {
+                color: #888;
+                border-left: 1px solid #eee;
+                padding-left: 8px;
+              }
+            }
+          }
+        }
+      }
+      .map-pane {
+        flex: 1;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 480px;
+        .diagram-container {
+          position: relative;
+          width: 100%;
+          height: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          .diagram-blob {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 480px;
+            height: 380px;
+            background: #f4f7fb;
+            border-radius: 48% 52% 45% 55% / 52% 48% 55% 45%;
+            z-index: 0;
+          }
+          .halo-dot {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            z-index: 10;
+            
+            &::before {
+              content: '';
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%, -50%);
+              width: 220%;
+              height: 220%;
+              border-radius: 50%;
+              opacity: 0.15;
+              z-index: -1;
+            }
+            &.green::before { background: #1cc661; }
+            &.red::before { background: #f75555; }
+            &.ping::after {
+              content: '';
+              position: absolute;
+              top: -2px;
+              left: -2px;
+              right: -2px;
+              bottom: -2px;
+              border-radius: 50%;
+              border: 2px solid;
+              animation: radarPing 1.5s infinite ease-out;
+            }
+            &.green.ping::after { border-color: #1cc661; }
+            &.red.ping::after { border-color: #f75555; }
+          }
+          .center-node {
+            position: absolute;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            .center-name {
+              position: absolute;
+              bottom: 28px;
+              left: 50%;
+              transform: translateX(-50%);
+              white-space: nowrap;
+              font-size: 16px;
+              font-weight: 800;
+              color: #222;
+            }
+          }
+          .line {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            height: 0px;
+            transform-origin: left center;
+            border-bottom: 2px dashed #cbd5e1;
+            z-index: 1;
+          }
+          .outer-node {
+            position: absolute;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            .node-circle {
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              position: relative;
+              .tooltip {
+                position: absolute;
+                bottom: calc(100% + 16px);
+                left: 50%;
+                transform: translateX(-50%);
+                background: #fff;
+                padding: 10px 14px;
+                border-radius: 8px;
+                white-space: nowrap;
+                z-index: 20;
+
+                &.tooltip-red {
+                  border: 1px solid #ffcccc;
+                  box-shadow: 0 4px 12px rgba(247, 85, 85, 0.15);
+                  .tt-badge { color: #f75555; }
+                  &::before { border-color: #ffcccc transparent transparent transparent; }
+                }
+
+                &.tooltip-green {
+                  border: 1px solid #cce8d6;
+                  box-shadow: 0 4px 12px rgba(28, 198, 97, 0.15);
+                  .tt-badge { color: #1cc661; }
+                  &::before { border-color: #cce8d6 transparent transparent transparent; }
+                }
+
+                .tt-title {
+                  font-size: 14px;
+                  font-weight: 700;
+                  color: #333;
+                  display: flex;
+                  align-items: center;
+                  gap: 6px;
+                  margin-bottom: 4px;
+                  
+                  .tt-badge {
+                    font-size: 12px;
+                    margin-left: 4px;
+                  }
+                }
+                .tt-desc {
+                  font-size: 12px;
+                  color: #888;
+                }
+
+                &::after {
+                  content: '';
+                  position: absolute;
+                  top: 100%;
+                  left: 50%;
+                  margin-left: -6px;
+                  border-width: 6px;
+                  border-style: solid;
+                  border-color: #fff transparent transparent transparent;
+                  z-index: 2;
+                }
+                
+                &::before {
+                  content: '';
+                  position: absolute;
+                  top: 100%;
+                  left: 50%;
+                  margin-left: -7px;
+                  border-width: 7px;
+                  border-style: solid;
+                  z-index: 1;
+                }
+              }
+            }
+
+            .node-name {
+              font-size: 14px;
+              font-weight: 700;
+              color: #333;
+              white-space: nowrap;
+            }
+          }
+        }
+        .legend {
+          position: absolute;
+          bottom: -50px;
+          right: -15px;
+          background: #fff;
+          border: 1px solid #eee;
+          padding: 14px 20px;
+          border-radius: 8px;
+          box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+
+          .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 13px;
+            color: #666;
+            margin-bottom: 8px;
+
+            &:last-child { margin-bottom: 0; }
+
+            .dot {
+              width: 8px;
+              height: 8px;
+              border-radius: 50%;
+              &.green { background: #1cc661; }
+              &.red { background: #f75555; }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@keyframes radarPing {
+  0% { transform: scale(1); opacity: 0.8; }
+  100% { transform: scale(3.5); opacity: 0; }
+}
