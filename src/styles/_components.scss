@@ -1,0 +1,45 @@
+@use './mixins' as *;
+
+/* ---- 배지 ---- */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 6px 15px;
+  border-radius: 999px;
+
+  .dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: currentColor;
+  }
+}
+
+.badge-blue { background: var(--blue); color: #fff; }
+.badge-blue-soft { background: var(--blue-soft); color: var(--blue-dark); }
+.badge-orange { background: #fef3c7; color: var(--orange-dark); }
+.badge-green { background: var(--green-soft); color: var(--green); }
+
+/* ---- 버튼 ---- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  padding: 13px 26px;
+  border-radius: 80px;
+  cursor: pointer;
+  border: none;
+  transition: .2s;
+}
+
+.btn-orange { background: var(--orange); color: #fff; }
+.btn-orange:hover { background: var(--orange-dark); }
+.btn-ghost { background: #fff; color: var(--text); border: 1px solid var(--border); }
+.btn-ghost:hover { background: var(--light-2); }
+.btn-outline-white { background: rgba(255,255,255,.08); color: #fff; border: 1px solid rgba(255,255,255,.45); }
+.btn-outline-white:hover { background: rgba(255,255,255,.2); }

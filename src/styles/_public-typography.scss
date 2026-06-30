@@ -1,0 +1,17 @@
+/* ---- 퍼블릭 전용 타이포그래피 ---- */
+.public-layout {
+  .sec-title {
+    font-size: 34px;
+    font-weight: 800;
+    line-height: 1.32;
+    margin: 16px 0 18px;
+  }
+
+  .sec-desc {
+    color: var(--muted);
+    font-size: 16px;
+    line-height: 1.85;
+    margin-bottom: 26px;
+    white-space: pre-line;
+  }
+}
