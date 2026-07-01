@@ -23,7 +23,8 @@
   position:absolute;
   right:-60px;         /* 중앙을 섹션 안쪽에 두어 호 전체가 보이게 */
   top:50%;transform:translateY(-50%);
-  width:380px;height:380px;border-radius:50%;
+  width:380px;height:380px;
+  border-radius:50% 0 0 50%;
   border:40px solid var(--orange);
   border-right-color:transparent;   /* ← 오른쪽 호 제거 → 역D자(⊃) */
   opacity:.95;pointer-events:none;

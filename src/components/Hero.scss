@@ -17,6 +17,7 @@
   height: 100%;
   display: flex;
   z-index: 0;
+  user-select: none;
 }
 
 .hero-slide-bg {
@@ -114,6 +115,14 @@
   .hero h1 .brand-name { font-size: 32px; }
   .hero-sub { font-size: 14px; }
   .recent { flex-wrap: wrap; }
+  
+  .hero-controls {
+    bottom: 20px;
+    padding: 6px 12px;
+  }
+  .hero-controls .control-btn {
+    padding: 2px;
+  }
 }
 
 @media (max-width: 480px) {
