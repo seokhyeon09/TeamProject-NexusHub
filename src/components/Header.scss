@@ -57,7 +57,7 @@ header.scrolled {
     top: 100%;
     left: 0;
     width: 100vw; // 화면 전체 너비
-    transform: translateY(10px);
+    transform: translateY(-10px);
     opacity: 0;
     visibility: hidden;
     transition: all .25s cubic-bezier(0.4, 0, 0.2, 1);
