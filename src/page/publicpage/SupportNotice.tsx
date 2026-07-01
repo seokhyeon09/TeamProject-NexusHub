@@ -2,9 +2,11 @@ import SubPageLayout from '../../components/SubPageLayout';
 import { sidebarData } from '../../data/sidebarData';
 import { noticeData } from '../../data/noticeData';
 import { Pin, ChevronDown, ChevronLeft, ChevronRight, Search } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import './SupportNotice.scss';
 
 export default function SupportNotice() {
+  const navigate = useNavigate();
   const getBadgeClass = (type: string) => {
     switch(type) {
       case '보안주의': return 'badge-orange';
@@ -66,7 +68,12 @@ export default function SupportNotice() {
           </div>
           <div className="table-body">
             {noticeData.map((notice, idx) => (
-              <div className={`table-row ${notice.isPinned ? 'pinned' : ''}`} key={idx}>
+              <div 
+                className={`table-row ${notice.isPinned ? 'pinned' : ''}`} 
+                key={idx}
+                onClick={() => navigate(`/support/notice/${notice.id}`)}
+                style={{ cursor: 'pointer' }}
+              >
                 <div className="col-id">
                   {notice.isPinned ? <Pin size={18} color="#f97316" /> : notice.id}
                 </div>

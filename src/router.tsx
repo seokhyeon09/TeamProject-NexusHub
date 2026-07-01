@@ -18,6 +18,7 @@ import ConsultingInfo from "./page/publicpage/ConsultingInfo";
 import ConsultingApply from "./page/publicpage/ConsultingApply";
 
 import SupportNotice from "./page/publicpage/SupportNotice";
+import SupportNoticeDetail from "./page/publicpage/SupportNoticeDetail";
 import SupportFaq from "./page/publicpage/SupportFaq";
 import SupportClaim from "./page/publicpage/SupportClaim";
 import SupportInquiry from "./page/publicpage/SupportInquiry";
@@ -50,6 +51,7 @@ export const router = createBrowserRouter([
       { path: "consulting/apply", element: <ConsultingApply /> },
 
       { path: "support/notice", element: <SupportNotice /> },
+      { path: "support/notice/:id", element: <SupportNoticeDetail /> },
       { path: "support/faq", element: <SupportFaq /> },
       { path: "support/claim", element: <SupportClaim /> },
       { path: "support/inquiry", element: <SupportInquiry /> },
