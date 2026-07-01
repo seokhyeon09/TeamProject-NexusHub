@@ -13,6 +13,11 @@ export default function Hero() {
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [isPlaying, setIsPlaying] = useState(true);
 
+  // Drag states
+  const [touchStartX, setTouchStartX] = useState<number | null>(null);
+  const [dragOffset, setDragOffset] = useState(0);
+  const [isDragging, setIsDragging] = useState(false);
+
   // Auto Slide
   useEffect(() => {
     if (!isPlaying) return;
@@ -23,16 +28,53 @@ export default function Hero() {
   }, [isPlaying]);
 
   const goToPrev = () => {
+    if (currentIndex <= 0) return;
     setIsTransitioning(true);
     setCurrentIndex((prev) => prev - 1);
   };
 
   const goToNext = () => {
+    if (currentIndex >= extendedImages.length - 1) return;
     setIsTransitioning(true);
     setCurrentIndex((prev) => prev + 1);
   };
 
   const togglePlay = () => setIsPlaying(!isPlaying);
+
+  // Drag handlers
+  const handleDragStart = (e: React.MouseEvent | React.TouchEvent) => {
+    // 버튼이나 입력창 등을 클릭했을 때는 드래그가 작동하지 않도록 예외 처리
+    if ((e.target as HTMLElement).closest('button, input, a, .hero-controls, .recent')) return;
+    
+    const clientX = 'touches' in e ? e.touches[0].clientX : (e as React.MouseEvent).clientX;
+    setIsPlaying(false);
+    setTouchStartX(clientX);
+    setDragOffset(0);
+    setIsDragging(true);
+    setIsTransitioning(false);
+  };
+
+  const handleDragMove = (e: React.MouseEvent | React.TouchEvent) => {
+    if (!isDragging || touchStartX === null) return;
+    const clientX = 'touches' in e ? e.touches[0].clientX : (e as React.MouseEvent).clientX;
+    setDragOffset(clientX - touchStartX);
+  };
+
+  const handleDragEnd = () => {
+    if (!isDragging) return;
+    
+    if (dragOffset > 50) {
+      goToPrev();
+    } else if (dragOffset < -50) {
+      goToNext();
+    } else {
+      setIsTransitioning(true); // Snap back
+    }
+    
+    setIsDragging(false);
+    setDragOffset(0);
+    setTouchStartX(null);
+  };
 
   // 트랜지션이 끝났을 때 눈속임으로 진짜 인덱스로 스위칭합니다.
   const handleTransitionEnd = () => {
@@ -46,13 +88,24 @@ export default function Hero() {
   };
 
   return (
-    <section className="hero">
+    <section 
+      className="hero"
+      style={{ cursor: isDragging ? 'grabbing' : 'grab' }}
+      onMouseDown={handleDragStart}
+      onMouseMove={handleDragMove}
+      onMouseUp={handleDragEnd}
+      onMouseLeave={handleDragEnd}
+      onTouchStart={handleDragStart}
+      onTouchMove={handleDragMove}
+      onTouchEnd={handleDragEnd}
+      onDragStart={(e) => e.preventDefault()}
+    >
       {/* Slider Backgrounds */}
       <div 
         className="hero-slider" 
         style={{ 
-          transform: `translateX(-${currentIndex * 100}%)`,
-          transition: isTransitioning ? 'transform 0.6s cubic-bezier(0.25, 1, 0.5, 1)' : 'none'
+          transform: `translateX(calc(-${currentIndex * 100}% + ${dragOffset}px))`,
+          transition: isTransitioning && !isDragging ? 'transform 0.6s cubic-bezier(0.25, 1, 0.5, 1)' : 'none'
         }}
         onTransitionEnd={handleTransitionEnd}
       >
