@@ -41,14 +41,14 @@
     border-top: 1px solid #e2e8f0;
 
     .faq-item {
-      border-bottom: 1px solid #e2e8f0;
-      transition: all 0.3s;
+      border: 1px solid transparent;
+      border-bottom-color: #e2e8f0;
+      transition: background-color 0.3s, margin 0.3s, border-radius 0.3s;
 
       &.expanded {
         background-color: #f8fafc;
-        border: 1px solid #bfdbfe;
+        border-color: #bfdbfe;
         border-radius: 8px;
-        border-bottom-color: #bfdbfe;
         margin: 10px 0;
       }
 
