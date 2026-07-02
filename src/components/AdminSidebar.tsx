@@ -13,7 +13,7 @@ const sidebarData = [
       { label: '터미널 물류 통계', path: '/admin/logistics/stats' },
       { label: '입/출고 도크 현황', path: '/admin/logistics/dock' },
       { label: '분류 및 상하차 통제', path: '/admin/logistics/control' },
-      { label: '예외 화물 및 CS 처리반', path: '/admin/logistics/cs', badge: '3' }
+      { label: '예외 화물 및 CS 처리반', path: '/admin/logistics/cs' }
     ]
   },
   {
