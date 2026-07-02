@@ -23,6 +23,8 @@ import SupportFaq from "./page/publicpage/SupportFaq";
 import SupportClaim from "./page/publicpage/SupportClaim";
 import SupportInquiry from "./page/publicpage/SupportInquiry";
 
+import Dashboard from "./page/adminpage/Dashboard";
+
 export const router = createBrowserRouter([
   {
     path: "/login",
@@ -61,7 +63,7 @@ export const router = createBrowserRouter([
     path: "/admin",
     element: <AdminLayout />,
     children: [
-      // 어드민 하위 페이지들이 여기에 추가됩니다.
+      { path: "dashboard", element: <Dashboard /> },
     ],
   },
 ]);

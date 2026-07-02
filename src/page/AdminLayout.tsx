@@ -1,13 +1,18 @@
 import { Outlet } from "react-router-dom";
+import AdminHeader from "../components/AdminHeader";
+import AdminSidebar from "../components/AdminSidebar";
 import "../styles/admin.scss";
 
 export default function AdminLayout() {
   return (
     <div className="admin-layout">
-      {/* 어드민용 헤더나 사이드바가 들어갈 자리 */}
-      <main>
-        <Outlet />
-      </main>
+      <AdminHeader />
+      <div className="admin-body">
+        <AdminSidebar />
+        <main className="admin-content">
+          <Outlet />
+        </main>
+      </div>
     </div>
   );
 }
