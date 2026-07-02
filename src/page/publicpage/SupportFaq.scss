@@ -37,88 +37,6 @@
     }
   }
 
-  .faq-filters {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 30px;
-    gap: 20px;
-    flex-wrap: wrap;
-
-    .category-buttons {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-
-      button {
-        display: flex;
-        align-items: center;
-        gap: 6px;
-        padding: 8px 16px;
-        border: 1px solid #e2e8f0;
-        border-radius: 6px;
-        background: white;
-        color: #475569;
-        font-size: 14px;
-        font-weight: 500;
-        cursor: pointer;
-        transition: all 0.2s;
-
-        .cat-icon { font-size: 14px; }
-
-        &:hover {
-          border-color: #cbd5e1;
-          background: #f8fafc;
-        }
-        &.active {
-          background: #1d4ed8;
-          color: white;
-          border-color: #1d4ed8;
-        }
-      }
-    }
-
-    .search-bar {
-      display: flex;
-      align-items: center;
-      border: 1px solid #e2e8f0;
-      border-radius: 6px;
-      padding-left: 12px;
-      width: 320px;
-      background: white;
-      transition: border-color 0.2s;
-
-      &:focus-within {
-        border-color: #3b82f6;
-        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
-      }
-
-      input {
-        flex: 1;
-        border: none;
-        padding: 12px;
-        outline: none;
-        font-size: 14px;
-        &::placeholder { color: #94a3b8; }
-      }
-
-      .btn-search {
-        background: #3b82f6;
-        color: white;
-        border: none;
-        padding: 0 20px;
-        height: 100%;
-        font-weight: 500;
-        cursor: pointer;
-        border-radius: 0 6px 6px 0;
-        transition: background 0.2s;
-        align-self: stretch;
-
-        &:hover { background: #2563eb; }
-      }
-    }
-  }
-
   .faq-list {
     border-top: 1px solid #e2e8f0;
 
@@ -323,13 +241,6 @@
   @media (max-width: 768px) {
     padding: 20px;
     
-    .faq-filters {
-      flex-direction: column;
-      align-items: stretch;
-      
-      .search-bar { width: 100%; }
-    }
-
     .faq-list .faq-item .faq-answer {
       margin-left: 0;
       padding-top: 10px;

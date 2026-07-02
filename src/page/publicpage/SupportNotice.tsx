@@ -1,9 +1,10 @@
 import SubPageLayout from '../../components/SubPageLayout';
 import { sidebarData } from '../../data/sidebarData';
 import { noticeData } from '../../data/noticeData';
-import { Pin, ChevronDown, ChevronLeft, ChevronRight, Search } from 'lucide-react';
+import { Pin, ChevronDown, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useBoardFilter } from '../../hooks/useBoardFilter';
+import BoardFilterBar from '../../components/BoardFilterBar';
 import './SupportNotice.scss';
 
 export default function SupportNotice() {
@@ -69,32 +70,14 @@ export default function SupportNotice() {
         </div>
 
         {/* Filters */}
-        <div className="notice-filters">
-          <div className="filter-tabs">
-            {NOTICE_CATEGORIES.map(cat => (
-              <button 
-                key={cat} 
-                className={categoryFilter === cat ? 'active' : ''}
-                onClick={() => setCategoryFilter(cat)}
-              >
-                {cat}
-              </button>
-            ))}
-          </div>
-          <div className="search-bar">
-            <Search size={18} color="#94a3b8" />
-            <input 
-              type="text" 
-              placeholder="제목이나 내용 검색" 
-              value={searchInput}
-              onChange={(e) => setSearchInput(e.target.value)}
-              onKeyDown={(e) => {
-                if (e.key === 'Enter') setSearchQuery(searchInput);
-              }}
-            />
-            <button className="btn-search" onClick={() => setSearchQuery(searchInput)}>검색</button>
-          </div>
-        </div>
+        <BoardFilterBar
+          categories={NOTICE_CATEGORIES}
+          activeCategory={categoryFilter}
+          onCategoryChange={setCategoryFilter}
+          searchInput={searchInput}
+          onSearchInputChange={setSearchInput}
+          onSearchSubmit={setSearchQuery}
+        />
 
         {/* Table List */}
         <div className="notice-table">

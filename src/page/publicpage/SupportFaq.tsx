@@ -3,7 +3,8 @@ import SubPageLayout from '../../components/SubPageLayout';
 import { sidebarData } from '../../data/sidebarData';
 import { faqData } from '../../data/faqData';
 import { useBoardFilter } from '../../hooks/useBoardFilter';
-import { ChevronDown, ChevronUp, Search, ChevronLeft, ChevronRight } from 'lucide-react';
+import BoardFilterBar from '../../components/BoardFilterBar';
+import { ChevronDown, ChevronUp, ChevronLeft, ChevronRight } from 'lucide-react';
 import './SupportFaq.scss';
 
 export default function SupportFaq() {
@@ -36,14 +37,7 @@ export default function SupportFaq() {
     setExpandedId(prev => prev === id ? null : id);
   };
 
-  const CATEGORIES = [
-    { label: '전체', icon: '' },
-    { label: '배송문의', icon: '📦' },
-    { label: '반품/교환', icon: '🔁' },
-    { label: '주소변경', icon: '📍' },
-    { label: '파손/분실', icon: '⚠️' },
-    { label: '앱이용', icon: '📱' }
-  ];
+  const FAQ_CATEGORIES = ['전체', '배송문의', '반품/교환', '주소변경', '파손/분실', '앱이용'];
 
   return (
     <SubPageLayout 
@@ -76,33 +70,14 @@ export default function SupportFaq() {
           </div>
         </div>
 
-        <div className="faq-filters">
-          <div className="category-buttons">
-            {CATEGORIES.map(cat => (
-              <button 
-                key={cat.label} 
-                className={categoryFilter === cat.label ? 'active' : ''}
-                onClick={() => setCategoryFilter(cat.label)}
-              >
-                {cat.icon && <span className="cat-icon">{cat.icon}</span>}
-                {cat.label}
-              </button>
-            ))}
-          </div>
-          <div className="search-bar">
-            <Search size={18} color="#94a3b8" />
-            <input 
-              type="text" 
-              placeholder="질문 검색" 
-              value={searchInput}
-              onChange={(e) => setSearchInput(e.target.value)}
-              onKeyDown={(e) => {
-                if (e.key === 'Enter') setSearchQuery(searchInput);
-              }}
-            />
-            <button className="btn-search" onClick={() => setSearchQuery(searchInput)}>검색</button>
-          </div>
-        </div>
+        <BoardFilterBar
+          categories={FAQ_CATEGORIES}
+          activeCategory={categoryFilter}
+          onCategoryChange={setCategoryFilter}
+          searchInput={searchInput}
+          onSearchInputChange={setSearchInput}
+          onSearchSubmit={setSearchQuery}
+        />
 
         <div className="faq-list">
           {filteredAndSortedData.length > 0 ? (

@@ -47,86 +47,6 @@
     }
   }
 
-  /* Filters */
-  .notice-filters {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    margin-bottom: 24px;
-    flex-wrap: wrap;
-    gap: 16px;
-
-    .filter-tabs {
-      display: flex;
-      gap: 8px;
-      margin-right: auto;
-
-      button {
-        padding: 8px 16px;
-        border-radius: 20px;
-        font-size: 14px;
-        font-weight: 500;
-        background: #f8fafc;
-        border: 1px solid #e2e8f0;
-        color: #64748b;
-        cursor: pointer;
-        transition: all 0.2s;
-
-        &:hover {
-          background: #f1f5f9;
-        }
-
-        &.active {
-          background: #1e3a8a;
-          border-color: #1e3a8a;
-          color: #fff;
-        }
-      }
-    }
-
-    .search-bar {
-      display: flex;
-      align-items: center;
-      background: #f8fafc;
-      border: 1px solid #e2e8f0;
-      border-radius: 8px;
-      padding: 4px 4px 4px 12px;
-      width: 320px;
-      margin: 0; /* Override global .search-bar margin: 0 auto */
-      box-shadow: none; /* Override global .search-bar box-shadow */
-
-      input {
-        flex: 1;
-        border: none;
-        background: none;
-        padding: 8px;
-        font-size: 14px;
-        outline: none;
-        color: #1e293b;
-
-        &::placeholder {
-          color: #94a3b8;
-        }
-      }
-
-      .btn-search {
-        background: #3b82f6;
-        color: #fff;
-        border: none;
-        padding: 8px 16px;
-        border-radius: 6px;
-        font-size: 14px;
-        font-weight: 500;
-        cursor: pointer;
-        transition: background 0.2s;
-
-        &:hover {
-          background: #2563eb;
-        }
-      }
-    }
-  }
-
   /* Table */
   .notice-table {
     border-top: 2px solid #e2e8f0;
@@ -296,20 +216,6 @@
       flex-direction: column;
       align-items: flex-start;
       gap: 12px;
-    }
-
-    .notice-filters {
-      .search-bar {
-        width: 100%;
-      }
-      .filter-tabs {
-        overflow-x: auto;
-        width: 100%;
-        padding-bottom: 8px;
-        button {
-          white-space: nowrap;
-        }
-      }
     }
 
     .notice-table {
