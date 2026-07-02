@@ -1,9 +1,28 @@
+import { useState } from 'react';
 import SubPageLayout from '../../components/SubPageLayout';
 import { sidebarData } from '../../data/sidebarData';
 import { FileText, Image as ImageIcon, CheckCircle, Info, ChevronDown, Search } from 'lucide-react';
 import './SupportClaim.scss';
 
 export default function SupportClaim() {
+  const [trackingNum, setTrackingNum] = useState('');
+  const [isVerified, setIsVerified] = useState(false);
+  const [content, setContent] = useState('');
+
+  const handleVerify = () => {
+    if (trackingNum.trim().length > 0) {
+      setIsVerified(true);
+    } else {
+      alert('운송장 번호를 입력해주세요.');
+    }
+  };
+
+  const handleContentChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const val = e.target.value;
+    if (val.length <= 500) {
+      setContent(val);
+    }
+  };
   const sidebarWarning = (
     <div className="claim-sidebar-warning">
       <h4><Info size={16} /> 접수 전 확인사항</h4>
@@ -42,16 +61,26 @@ export default function SupportClaim() {
             <div className="form-group">
               <label>운송장 번호 <span className="required">*</span></label>
               <div className="input-with-button">
-                <input type="text" placeholder="운송장 번호를 입력하세요 (예: 1234-5678-9012)" />
-                <button className="btn-search">
+                <input 
+                  type="text" 
+                  placeholder="운송장 번호를 입력하세요 (예: 1234-5678-9012)" 
+                  value={trackingNum}
+                  onChange={(e) => {
+                    setTrackingNum(e.target.value);
+                    setIsVerified(false); // 재입력 시 초기화
+                  }}
+                />
+                <button className="btn-search" onClick={handleVerify}>
                   <Search size={16} style={{ display: 'inline', verticalAlign: 'text-bottom', marginRight: '4px' }} /> 조회
                 </button>
               </div>
-              {/* 조회 성공 시 나타날 박스 (Step 1에서는 정적으로 표출) */}
-              <div className="success-box">
-                <CheckCircle size={16} />
-                <span>확인됨 — [홍길동 고객님] 2025.12.08 부산 허브터미널 → 서울 마곡센터</span>
-              </div>
+              
+              {isVerified && (
+                <div className="success-box">
+                  <CheckCircle size={16} />
+                  <span>확인됨 — [홍길동 고객님] 2025.12.08 부산 허브터미널 → 서울 마곡센터</span>
+                </div>
+              )}
             </div>
             
             <div className="form-group">
@@ -82,8 +111,10 @@ export default function SupportClaim() {
             <textarea 
               placeholder="피해 또는 분실 상황을 최대한 구체적으로 설명해 주세요.&#13;&#10;예) 박스 외형은 정상이었으나 내부 제품이 파손되어 있었음, 제품명: OO, 구매가: OO원"
               rows={5}
+              value={content}
+              onChange={handleContentChange}
             ></textarea>
-            <div className="char-count">0 / 500자</div>
+            <div className="char-count">{content.length} / 500자</div>
           </div>
 
           <div className="form-group">
