@@ -1,7 +1,15 @@
+import { useState } from 'react';
 import { List, ChevronRight } from 'lucide-react';
 import { inquiryHistoryData } from '../../data/inquiryHistoryData';
+import SupportInquiryDetail from './SupportInquiryDetail';
 
 export default function SupportInquiryHistory() {
+  const [selectedId, setSelectedId] = useState<string | null>(null);
+
+  if (selectedId) {
+    return <SupportInquiryDetail id={selectedId} onBack={() => setSelectedId(null)} />;
+  }
+
   return (
     <div className="recent-inquiries">
       <div className="header">
@@ -19,7 +27,7 @@ export default function SupportInquiryHistory() {
                 <p>접수번호 {item.id} • {item.date}</p>
               </div>
             </div>
-            <button className="btn-view">
+            <button className="btn-view" onClick={() => setSelectedId(item.id)}>
               {item.status === '답변완료' ? '답변 보기' : '상세 보기'} <ChevronRight size={14} />
             </button>
           </div>
