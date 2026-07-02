@@ -1,7 +1,14 @@
-import { NavLink } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { LogOut, User } from 'lucide-react';
 
 export default function AdminHeader() {
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    // 실제 로그아웃 로직(스토리지 비우기 등)이 필요하다면 여기에 추가
+    navigate('/');
+  };
+
   return (
     <header className="admin-header">
       <div className="header-left">
@@ -19,7 +26,7 @@ export default function AdminHeader() {
             <span>김판수 반장 (통합센터)</span>
           </div>
         </div>
-        <button className="btn-logout">
+        <button className="btn-logout" onClick={handleLogout}>
           로그아웃 <LogOut size={14} />
         </button>
       </div>
