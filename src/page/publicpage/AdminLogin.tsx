@@ -11,7 +11,7 @@ export default function AdminLogin() {
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
-    alert('사내 시스템 접속 중입니다...');
+    navigate('/admin/dashboard');
   };
 
   return (
