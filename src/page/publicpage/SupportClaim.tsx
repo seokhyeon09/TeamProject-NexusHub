@@ -153,10 +153,10 @@ export default function SupportClaim() {
             </div>
             
             {photos.length > 0 && (
-              <div className="upload-preview">
-                {photos.map((p, idx) => (
-                  <div className="preview-item checked" key={idx}>
-                    <CheckCircle size={24} color="#3b82f6" />
+              <div style={{ marginTop: '12px', display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+                {photos.map((_, idx) => (
+                  <div key={idx} style={{ padding: '4px', border: '1px solid #e2e8f0', borderRadius: '8px', width: '60px', height: '60px', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#f8fafc', position: 'relative' }}>
+                    <ImageIcon size={20} color="#94a3b8" />
                   </div>
                 ))}
                 {photos.length < 5 && (
