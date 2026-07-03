@@ -31,7 +31,7 @@ export default function BoardFilterBar({
           </button>
         ))}
       </div>
-      <div className="search-bar">
+      <div className="board-search-bar">
         <Search size={18} color="#94a3b8" />
         <input 
           type="text" 
