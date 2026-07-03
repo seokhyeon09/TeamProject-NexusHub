@@ -35,7 +35,7 @@
     }
   }
 
-  .search-bar {
+  .board-search-bar {
     display: flex;
     align-items: center;
     background: #f8fafc;
@@ -88,7 +88,7 @@
     flex-direction: column;
     align-items: flex-start;
     
-    .search-bar {
+    .board-search-bar {
       width: 100%;
     }
     

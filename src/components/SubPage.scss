@@ -146,6 +146,10 @@
       display: none;
     }
 
+    .mobile-dropdown-toggle {
+      display: none;
+    }
+
     &-menu {
       flex-direction: row;
       gap: 0;
@@ -216,6 +220,71 @@
       font-size: 13px; /* 기존 11px -> 13px */
       padding: 10px 6px;
       letter-spacing: -0.5px;
+    }
+  }
+
+  /* 360px 이하: 가로 나열 대신 세로 리스트(4줄) 박스 형태로 변경 */
+  @media (max-width: 360px) {
+    border-bottom: none;
+    padding: 24px 16px 0; /* 위쪽 여백 24px 추가, 양옆 마진(패딩) 부여 */
+
+    .mobile-dropdown-toggle {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #fff;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 14px 16px;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--navy);
+      box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+      cursor: pointer;
+      margin-bottom: 8px;
+
+      .arrow {
+        transition: transform 0.3s ease;
+        &.open {
+          transform: rotate(180deg);
+        }
+      }
+    }
+
+    &-menu {
+      display: none; /* 기본으로 숨김 처리 */
+      flex-direction: column;
+      align-items: stretch;
+      background: #fff;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px; /* 박스 형태 모서리 둥글게 */
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08); /* 드롭 섀도우(그림자) 추가 */
+      overflow: hidden; /* 모서리 둥글게 깎기 위해 */
+
+      &.open {
+        display: flex; /* 토글 시 나타남 */
+      }
+    }
+
+    &-link {
+      width: 100%;
+      text-align: center;
+      border-bottom: 1px solid #f1f5f9;
+      white-space: normal;
+      padding: 14px 10px; /* 간격 조정 */
+
+      &:last-child {
+        border-bottom: none;
+      }
+
+      &.active::after {
+        display: none;
+      }
+      
+      &.active {
+        background: #eff6ff;
+        font-weight: 700;
+      }
     }
   }
 }
