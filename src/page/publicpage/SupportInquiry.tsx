@@ -8,10 +8,14 @@ import {
 } from 'lucide-react';
 import SupportInquiryForm from './SupportInquiryForm';
 import SupportInquiryHistory from './SupportInquiryHistory';
+import { useRequireAuth } from '../../hooks/useRequireAuth';
 import './SupportInquiry.scss';
 
 export default function SupportInquiry() {
   const [activeTab, setActiveTab] = useState<'write' | 'history'>('write');
+  const userId = useRequireAuth();
+
+  if (!userId) return null;
 
   const sidebarWidgets = (
     <>

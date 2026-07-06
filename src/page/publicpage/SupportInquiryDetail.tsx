@@ -1,5 +1,6 @@
 import { ArrowLeft, User, Headphones } from 'lucide-react';
-import { inquiryHistoryData } from '../../data/inquiryHistoryData';
+import { useAuth } from '../../contexts/AuthContext';
+import { userData } from '../../data/userData';
 
 interface SupportInquiryDetailProps {
   id: string;
@@ -7,7 +8,9 @@ interface SupportInquiryDetailProps {
 }
 
 export default function SupportInquiryDetail({ id, onBack }: SupportInquiryDetailProps) {
-  const data = inquiryHistoryData.find(item => item.id === id);
+  const { userId } = useAuth();
+  const userInquiries = userId ? userData[userId]?.inquiries || [] : [];
+  const data = userInquiries.find(item => item.id === id);
 
   if (!data) return null;
 

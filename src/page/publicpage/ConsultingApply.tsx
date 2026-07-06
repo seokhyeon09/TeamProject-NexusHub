@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import SubPageLayout from "../../components/SubPageLayout";
 import { sidebarData } from "../../data/sidebarData";
+import { useRequireAuth } from "../../hooks/useRequireAuth";
 import "./ConsultingApply.scss";
 
 type ConsultType = "pickup" | "corporate" | "quote" | "claim" | "other";
@@ -59,6 +60,7 @@ const ConsultSteps = () => (
   </div>
 );
 export default function ConsultingApply() {
+  const userId = useRequireAuth();
   const [searchParams] = useSearchParams();
   const typeParam = searchParams.get("type") as ConsultType | null;
   const initialType: ConsultType =
@@ -66,6 +68,8 @@ export default function ConsultingApply() {
 
   const [selectedType, setSelectedType] = useState<ConsultType>(initialType);
   const [agreed, setAgreed] = useState(false);
+  
+  if (!userId) return null;
   const [form, setForm] = useState({
     name: "",
     company: "",
