@@ -223,29 +223,51 @@
         display: none; // Hide header on mobile
       }
       
-      .table-row {
-        flex-direction: column;
-        align-items: flex-start !important;
-        gap: 8px;
-        padding: 16px !important;
+      .table-body {
+        .table-row {
+          display: grid;
+          grid-template-columns: auto 1fr;
+          gap: 12px;
+          padding: 16px !important;
+          align-items: center !important;
 
-        .col-id { display: none; }
-        .col-type { width: auto; text-align: left; margin-bottom: 2px; }
-        .col-title { 
-          padding-left: 0; 
-          width: 100%; 
-          align-items: flex-start;
+          .col-id { display: none; }
           
-          .new-badge {
-            margin-top: 4px;
-            flex-shrink: 0;
+          .col-type { 
+            grid-column: 1 / 2;
+            grid-row: 1;
+            width: auto; 
+            text-align: left; 
+            margin-bottom: 0; 
           }
           
-          .title-text {
-            word-break: keep-all;
+          .col-date { 
+            grid-column: 2 / 3;
+            grid-row: 1;
+            width: auto; 
+            text-align: right; 
+            font-size: 12px; 
+            color: #94a3b8;
+            margin-top: 0; 
+          }
+
+          .col-title { 
+            grid-column: 1 / -1;
+            grid-row: 2;
+            padding-left: 0; 
+            width: 100%; 
+            align-items: center;
+            
+            .new-badge {
+              margin-top: 0;
+              flex-shrink: 0;
+            }
+            
+            .title-text {
+              word-break: keep-all;
+            }
           }
         }
-        .col-date { width: auto; text-align: left; font-size: 12px; margin-top: 4px; }
       }
     }
   }
