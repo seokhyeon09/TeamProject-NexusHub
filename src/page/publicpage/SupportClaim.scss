@@ -42,6 +42,11 @@
       }
     }
   }
+
+  @media (max-width: 768px) {
+    margin-top: 0;
+    padding: 11px;
+  }
 }
 
 // Main Content
@@ -405,7 +410,7 @@
   }
 
   @media (max-width: 768px) {
-    padding: 24px;
+    padding: 11px;
 
     .claim-header {
       flex-direction: column;
