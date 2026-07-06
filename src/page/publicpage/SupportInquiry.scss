@@ -677,6 +677,9 @@
     }
 
   @media (max-width: 768px) {
+    .tabs {
+      justify-content: center;
+    }
     .inquiry-form-card {
       padding: 24px;
       .row-split {
