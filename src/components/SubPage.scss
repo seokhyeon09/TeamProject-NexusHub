@@ -20,10 +20,7 @@
 
   .sub-hero-content {
     text-align: left;
-    
-    @include mobile {
-      padding: 0 11px;
-    }
+    padding: 0 11px; /* 양옆 화면 끝에 딱 붙지 않도록 간격 추가 */
   }
 
   .breadcrumbs {
@@ -54,14 +51,18 @@
 .subpage-container {
   display: flex;
   gap: 40px;
-  padding-top: 80px;
-  padding-bottom: 80px;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  padding-left: 11px; /* 화면 끝에 딱 붙지 않게 11px 간격 */
+  padding-right: 11px;
   align-items: flex-start;
 
   @include mobile {
     flex-direction: column;
     align-items: stretch;
     padding-top: 0;
+    padding-left: 11px;
+    padding-right: 11px;
     gap: 20px;
   }
 }
@@ -74,8 +75,8 @@
   border-radius: 24px;
   box-shadow: 0 12px 32px rgba(0,0,0,0.04), 0 2px 12px rgba(0,0,0,0.02);
   padding: 32px 24px;
-  margin-top: 80px;
-  margin-bottom: 80px;
+  margin-top: 0;
+  margin-bottom: 0;
   overflow: hidden;
 
   &-header {
@@ -130,103 +131,21 @@
     }
   }
 
-  /* 900px 이하: 가로 탭 바 전환 */
+  /* 900px 이하: 테블릿 및 모바일에서 사이드바 드롭다운 형태로 변경 */
   @include mobile {
     width: 100%;
     min-width: 0;
     margin-top: 0;
     margin-bottom: 20px;
-    padding: 0;
+    padding: 24px 11px 0; /* 상단 여백 24px, 양옆 마진(패딩) 11px로 통일 */
     border-radius: 0;
     box-shadow: none;
-    border-bottom: 1px solid #e2e8f0;
-    overflow: visible; /* overflow:hidden 해제 → 탭 잘림 방지 */
+    border-bottom: none;
+    overflow: visible;
 
     &-header {
       display: none;
     }
-
-    .mobile-dropdown-toggle {
-      display: none;
-    }
-
-    &-menu {
-      flex-direction: row;
-      gap: 0;
-      overflow-x: auto;
-      white-space: nowrap;
-      display: flex;
-      width: 100%;
-      justify-content: center; /* 추가: 중앙 정렬 */
-
-      &::-webkit-scrollbar { display: none; }
-      -ms-overflow-style: none;
-      scrollbar-width: none;
-    }
-
-    &-link {
-      padding: 16px 20px; /* 패딩 약간 확대 */
-      border-radius: 0;
-      font-size: 16px; /* 폰트 크기 확대 (기존 14.5px) */
-      white-space: nowrap;
-      flex-shrink: 0;
-      position: relative; /* 탭 선 그리기용 */
-
-      .icon {
-        display: none;
-      }
-
-      &:hover {
-        background: transparent;
-      }
-
-      &.active {
-        background: transparent;
-        color: var(--blue, #2563eb);
-        
-        &::after {
-          content: "";
-          position: absolute;
-          bottom: 0;
-          left: 0;
-          right: 0;
-          height: 3px;
-          background: var(--blue, #2563eb);
-        }
-      }
-    }
-  }
-
-  /* 500px 이하: 폰트 및 패딩 축소 */
-  @media (max-width: 500px) {
-    &-link {
-      font-size: 15px; /* 기존 13px -> 15px */
-      padding: 12px 10px;
-    }
-  }
-
-  /* 440px 이하: 4개 탭이 한 화면에 꽉 차게 들어가도록 타이트하게 조절 */
-  @media (max-width: 440px) {
-    &-link {
-      font-size: 14px; /* 기존 12px -> 14px */
-      padding: 12px 8px;
-      letter-spacing: -0.5px;
-    }
-  }
-
-  /* 390px 이하: 폰트 초소형으로 축소 */
-  @media (max-width: 390px) {
-    &-link {
-      font-size: 13px; /* 기존 11px -> 13px */
-      padding: 10px 6px;
-      letter-spacing: -0.5px;
-    }
-  }
-
-  /* 360px 이하: 가로 나열 대신 세로 리스트(4줄) 박스 형태로 변경 */
-  @media (max-width: 360px) {
-    border-bottom: none;
-    padding: 24px 16px 0; /* 위쪽 여백 24px 추가, 양옆 마진(패딩) 부여 */
 
     .mobile-dropdown-toggle {
       display: flex;
@@ -273,6 +192,10 @@
       white-space: normal;
       padding: 14px 10px; /* 간격 조정 */
 
+      .icon {
+        display: none;
+      }
+
       &:last-child {
         border-bottom: none;
       }
@@ -293,8 +216,8 @@
 .subpage-content {
   flex: 1;
   min-width: 0;
-  padding-top: 80px;
-  padding-bottom: 80px;
+  padding-top: 0;
+  padding-bottom: 0;
 
   @media (max-width: 900px) {
     padding-top: 0;
@@ -324,7 +247,7 @@
 
 .sidebar-col > .sidebar {
   width: 100%;
-  margin-top: 80px;
+  margin-top: 0;
   margin-bottom: 0;
 
   @media (max-width: 900px) {
