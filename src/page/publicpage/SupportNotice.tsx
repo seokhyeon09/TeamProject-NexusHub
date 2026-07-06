@@ -101,9 +101,9 @@ export default function SupportNotice() {
                   </div>
                   <div className="col-type">
                     <span className={`type-badge ${getBadgeClass(notice.type)}`}>{notice.type}</span>
+                    {notice.isNew && <span className="new-badge">NEW</span>}
                   </div>
                   <div className="col-title">
-                    {notice.isNew && <span className="new-badge">NEW</span>}
                     <span className="title-text">{notice.title}</span>
                   </div>
                   <div className="col-date">{notice.date}</div>
