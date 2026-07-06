@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import SubPageLayout from '../../components/SubPageLayout';
 import { sidebarData } from '../../data/sidebarData';
 import { 
@@ -8,10 +8,22 @@ import {
 } from 'lucide-react';
 import SupportInquiryForm from './SupportInquiryForm';
 import SupportInquiryHistory from './SupportInquiryHistory';
+import { useAuth } from '../../contexts/AuthContext';
 import './SupportInquiry.scss';
 
 export default function SupportInquiry() {
   const [activeTab, setActiveTab] = useState<'write' | 'history'>('write');
+  const navigate = useNavigate();
+  const { userId } = useAuth();
+
+  useEffect(() => {
+    if (!userId) {
+      alert('로그인이 필요한 서비스입니다.');
+      navigate('/login');
+    }
+  }, [userId, navigate]);
+
+  if (!userId) return null;
 
   const sidebarWidgets = (
     <>

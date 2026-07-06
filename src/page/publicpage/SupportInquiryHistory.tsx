@@ -1,10 +1,13 @@
 import { useState } from 'react';
 import { List, ChevronRight } from 'lucide-react';
-import { inquiryHistoryData } from '../../data/inquiryHistoryData';
+import { useAuth } from '../../contexts/AuthContext';
+import { userData } from '../../data/userData';
 import SupportInquiryDetail from './SupportInquiryDetail';
 
 export default function SupportInquiryHistory() {
   const [selectedId, setSelectedId] = useState<string | null>(null);
+  const { userId } = useAuth();
+  const inquiryHistoryData = userId ? userData[userId]?.inquiries || [] : [];
 
   if (selectedId) {
     return <SupportInquiryDetail id={selectedId} onBack={() => setSelectedId(null)} />;

@@ -1,10 +1,22 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import SubPageLayout from '../../components/SubPageLayout';
 import { sidebarData } from '../../data/sidebarData';
 import { FileText, Image as ImageIcon, CheckCircle, Info, ChevronDown, Search } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../contexts/AuthContext';
 import './SupportClaim.scss';
 
 export default function SupportClaim() {
+  const navigate = useNavigate();
+  const { userId } = useAuth();
+
+  useEffect(() => {
+    if (!userId) {
+      alert('로그인이 필요한 서비스입니다.');
+      navigate('/login');
+    }
+  }, [userId, navigate]);
+
   const [trackingNum, setTrackingNum] = useState('');
   const [isVerified, setIsVerified] = useState(false);
   const [content, setContent] = useState('');
@@ -12,6 +24,8 @@ export default function SupportClaim() {
   const [phone, setPhone] = useState('');
   const [isAgreed, setIsAgreed] = useState(false);
   const [photos, setPhotos] = useState<number[]>([]);
+
+  if (!userId) return null;
 
   const handleVerify = () => {
     if (trackingNum.trim().length > 0) {
