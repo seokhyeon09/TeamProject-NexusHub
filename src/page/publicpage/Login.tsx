@@ -1,17 +1,24 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ChevronLeft, User, Lock, ArrowRight } from 'lucide-react';
+import { useAuth } from '../../contexts/AuthContext';
 import './Login.scss';
 
 export default function Login() {
   const navigate = useNavigate();
-  const [email, setEmail] = useState('');
+  const { login } = useAuth();
+  const [userId, setUserId] = useState('');
   const [password, setPassword] = useState('');
   const [keepLoggedIn, setKeepLoggedIn] = useState(false);
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
-    alert('로그인 기능은 아직 연결되지 않았습니다.');
+    const success = login(userId, password);
+    if (success) {
+      navigate(-1);
+    } else {
+      alert('아이디 또는 비밀번호가 일치하지 않습니다.');
+    }
   };
 
   return (
@@ -32,14 +39,14 @@ export default function Login() {
 
           <form onSubmit={handleLogin} className="login-form">
             <div className="input-group">
-              <label>이메일</label>
+              <label>아이디</label>
               <div className="input-wrapper">
                 <User size={20} className="input-icon" />
                 <input 
-                  type="email" 
-                  placeholder="user@example.com"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  type="text" 
+                  placeholder="아이디를 입력하세요"
+                  value={userId}
+                  onChange={(e) => setUserId(e.target.value)}
                   required 
                 />
               </div>
